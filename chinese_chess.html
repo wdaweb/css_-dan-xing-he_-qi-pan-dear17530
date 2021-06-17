@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-align: center;
+      font-family: '標楷體';
+    }
+
+    body {
+      font-size: 0rem;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #checkerboard {
+      width: 500px;
+      height: 550px;
+      border: 1px black solid;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #grid {
+      width: 400px;
+      height: 450px;
+      border: 1px black solid;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+    }
+
+    .rowGrid {
+      width: 50px;
+      height: 450px;
+      border-right: 1px rgb(0, 0, 0) solid;
+    }
+
+    .rowGrid:nth-child(8),
+    .colGrid:nth-child(9) {
+      border: none;
+    }
+
+    .colGrid:nth-child(5) {
+      border: 1px rgb(0, 0, 0) solid;
+      border-top: none;
+      background-color: white;
+      z-index: 1;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .colGrid {
+      height: 50px;
+      width: 400px;
+      border-bottom: 1px rgb(0, 0, 0) solid;
+    }
+
+    .chesses {
+      height: 50px;
+      width: 440px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      z-index: 1;
+    }
+
+    #checkerboard .chesses:nth-of-type(2) {
+      top: 25px;
+    }
+
+    #checkerboard .chesses:nth-of-type(3) {
+      top: 125px;
+      width: 340px;
+      justify-content: space-between;
+    }
+
+    #checkerboard .chesses:nth-of-type(4) {
+      top: 175px;
+    }
+
+    #checkerboard .chesses:nth-of-type(5) {
+      bottom: 175px;
+      color: red;
+    }
+
+    #checkerboard .chesses:nth-of-type(6) {
+      bottom: 125px;
+      width: 340px;
+      justify-content: space-between;
+      color: red;
+    }
+
+    #checkerboard .chesses:last-of-type {
+      bottom: 25px;
+      color: red;
+    }
+
+    .chess {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid black;
+      background: white;
+      font-size: 25px;
+      line-height: 40px;
+    }
+
+    .txt {
+      display: inline-block;
+      font-size: 30px;
+      writing-mode: vertical-lr;
+      position: absolute;
+      left: calc(50% - 300px);
+      transform: translateX(-50%);
+    }
+
+    .txt:nth-of-type(2) {
+      left: calc(50% + 300px);
+      transform: translateX(-50%);
+    }
+
+    .slash {
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 142px;
+      background: black;
+    }
+
+    #grid .slash:nth-of-type(4) {
+      top: 29px;
+      transform: rotate(45deg);
+    }
+
+    #grid .slash:nth-of-type(5) {
+      top: 29px;
+      transform: rotate(-45deg);
+    }
+
+    #grid .slash:nth-of-type(6) {
+      bottom: 28px;
+      transform: rotate(45deg);
+    }
+
+    #grid .slash:nth-of-type(7) {
+      bottom: 28px;
+      transform: rotate(-45deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="checkerboard">
+    <div id="grid">
+      <div class="row">
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+        <div class="rowGrid"></div>
+      </div>
+      <div class="col">
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+        <div class="colGrid"></div>
+      </div>
+      <div id="river"></div>
+      <div class="slash"></div>
+      <div class="slash"></div>
+      <div class="slash"></div>
+      <div class="slash"></div>
+    </div>
+    <div class="chesses">
+      <div class="chess">車</div>
+      <div class="chess">馬</div>
+      <div class="chess">象</div>
+      <div class="chess">士</div>
+      <div class="chess">將</div>
+      <div class="chess">士</div>
+      <div class="chess">象</div>
+      <div class="chess">馬</div>
+      <div class="chess">車</div>
+    </div>
+    <div class="chesses">
+      <div class="chess">包</div>
+      <div class="chess">包</div>
+    </div>
+    <div class="chesses">
+      <div class="chess">卒</div>
+      <div class="chess">卒</div>
+      <div class="chess">卒</div>
+      <div class="chess">卒</div>
+      <div class="chess">卒</div>
+    </div>
+    <div class="chesses">
+      <div class="chess">兵</div>
+      <div class="chess">兵</div>
+      <div class="chess">兵</div>
+      <div class="chess">兵</div>
+      <div class="chess">兵</div>
+    </div>
+    <div class="chesses">
+      <div class="chess">炮</div>
+      <div class="chess">炮</div>
+    </div>
+    <div class="chesses">
+      <div class="chess">俥</div>
+      <div class="chess">傌</div>
+      <div class="chess">相</div>
+      <div class="chess">仕</div>
+      <div class="chess">帥</div>
+      <div class="chess">仕</div>
+      <div class="chess">相</div>
+      <div class="chess">傌</div>
+      <div class="chess">俥</div>
+    </div>
+  </div>
+  <span class="txt">棋盤裡，車無輪馬無韁，叫聲將軍提防提防</span>
+  <span class="txt">圖畫裡，龍不吟虎不嘯，小小書僮可笑可笑</span>
+</body>
+
+</html>
